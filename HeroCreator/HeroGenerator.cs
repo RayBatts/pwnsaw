@@ -9,7 +9,10 @@ namespace HeroCreator
 {
     public partial class HeroGenerator : Form
     {
+        private readonly string xmlFilterString = "Xml files (*.xml)|*.xml";
+
         DataContractSerializer _serializer;
+        DataContractSerializer _listSerializer;
         List<HeroType> _heroTypes = new List<HeroType>();
         Random _rng = new Random();
 
@@ -22,11 +25,13 @@ namespace HeroCreator
             InitializeData();
 
             _serializer = new DataContractSerializer( typeof( Hero ) );
+            _listSerializer = new DataContractSerializer( typeof( List<Hero> ) );
         }
 
         private void InitializeEvents()
         {
-            this.btnGenerateHero.Click += new System.EventHandler( this.GenerateHero );
+            this.btnGenerateHero.Click += this.GenerateHero;
+            this.combineHeroFilesToolStripMenuItem.Click += this.CombineHeroFiles;
         }
 
         private List<T> GetEnumList<T>( bool pruneFirstEntry = false ) where T : IComparable
@@ -104,8 +109,7 @@ namespace HeroCreator
 
             SaveFileDialog fd = new SaveFileDialog();
             fd.FileName = hero.DisplayName;
-            fd.AddExtension = true;
-            fd.Filter = "Xml files (*.xml)|*.xml";
+            fd.Filter = xmlFilterString;
 
             if ( !string.IsNullOrEmpty( lastDirectory ) )
             {
@@ -114,7 +118,12 @@ namespace HeroCreator
 
             lastDirectory = System.IO.Path.GetDirectoryName( fd.FileName );
             
-            fd.ShowDialog();
+            var dialogResult = fd.ShowDialog();
+
+            if (dialogResult != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
 
             using ( var fileStream = fd.OpenFile() )
             {
@@ -132,6 +141,57 @@ namespace HeroCreator
             }
 
             return result;
+        }
+
+        private void CombineHeroFiles( object sender, EventArgs e )
+        {
+            var openFiles = new OpenFileDialog();
+            openFiles.Multiselect = true;
+            openFiles.Filter = xmlFilterString;
+
+            var dialogResult = openFiles.ShowDialog();
+
+            if (dialogResult != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
+
+            var heroesToSerialize = new List<Hero>();
+            foreach( var file in openFiles.FileNames )
+            {
+                using ( var fs = System.IO.File.OpenRead( file ) )
+                {
+                    var hero = _serializer.ReadObject( fs ) as Hero;
+                    if ( hero != null )
+                    {
+                        heroesToSerialize.Add( hero );
+                    }
+                }
+            }
+
+            SaveFileDialog fd = new SaveFileDialog();
+            fd.Filter = xmlFilterString;
+            fd.InitialDirectory = lastDirectory;
+            fd.FileName = "CombinedHeroFile";
+
+            if (!string.IsNullOrEmpty(lastDirectory))
+            {
+                fd.InitialDirectory = lastDirectory;
+            }
+
+            lastDirectory = System.IO.Path.GetDirectoryName(fd.FileName);
+
+            dialogResult = fd.ShowDialog();
+
+            if (dialogResult != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
+
+            using ( var fs = fd.OpenFile() )
+            {
+                _listSerializer.WriteObject( fs, heroesToSerialize );
+            }
         }
 
     }

@@ -39,7 +39,11 @@
             this.boxAttackRange = new System.Windows.Forms.ComboBox();
             this.boxTier = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.combineHeroFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.boxTier)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // boxHeroType
@@ -68,7 +72,6 @@
             this.btnGenerateHero.TabIndex = 2;
             this.btnGenerateHero.Text = "Generate!";
             this.btnGenerateHero.UseVisualStyleBackColor = true;
-            this.btnGenerateHero.Click += new System.EventHandler(this.GenerateHero);
             // 
             // lblRole
             // 
@@ -140,6 +143,30 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Tier:";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(464, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.combineHeroFilesToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // combineHeroFilesToolStripMenuItem
+            // 
+            this.combineHeroFilesToolStripMenuItem.Name = "combineHeroFilesToolStripMenuItem";
+            this.combineHeroFilesToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.combineHeroFilesToolStripMenuItem.Text = "Combine Hero Files";
+            // 
             // HeroGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -156,9 +183,13 @@
             this.Controls.Add(this.btnGenerateHero);
             this.Controls.Add(this.HeroNameLabel);
             this.Controls.Add(this.boxHeroType);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "HeroGenerator";
             this.Text = "Hero Generator";
             ((System.ComponentModel.ISupportInitialize)(this.boxTier)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,6 +208,9 @@
         private System.Windows.Forms.ComboBox boxAttackRange;
         private System.Windows.Forms.NumericUpDown boxTier;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem combineHeroFilesToolStripMenuItem;
     }
 }
 
