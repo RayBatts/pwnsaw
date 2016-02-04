@@ -116,11 +116,10 @@ namespace HeroCreator
             
             fd.ShowDialog();
 
-            var fileStream = fd.OpenFile();
-
-            _serializer.WriteObject( fileStream, hero );
-
-            fileStream.Close();
+            using ( var fileStream = fd.OpenFile() )
+            {
+                _serializer.WriteObject(fileStream, hero);
+            }
         }
 
         private int GetSelectedItems( ListBox listBox )
