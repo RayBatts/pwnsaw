@@ -105,7 +105,7 @@ namespace HeroCreator
             SaveFileDialog fd = new SaveFileDialog();
             fd.FileName = hero.DisplayName;
             fd.AddExtension = true;
-            fd.Filter = "Xml files (*.xml)|*.xml|";
+            fd.Filter = "Xml files (*.xml)|*.xml";
 
             if ( !string.IsNullOrEmpty( lastDirectory ) )
             {
