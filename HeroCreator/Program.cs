@@ -15,7 +15,8 @@ namespace HeroCreator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HeroGenerator());
+			//Application.Run(new HeroGenerator());
+			Application.Run( new HeroPoll() );
         }
     }
 }

@@ -73,10 +73,19 @@
     <Compile Include="HeroGenerator.Designer.cs">
       <DependentUpon>HeroGenerator.cs</DependentUpon>
     </Compile>
+    <Compile Include="HeroPoll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeroPoll.Designer.cs">
+      <DependentUpon>HeroPoll.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="HeroGenerator.resx">
       <DependentUpon>HeroGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeroPoll.resx">
+      <DependentUpon>HeroPoll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -102,6 +112,33 @@
       <Project>{83C1375D-156C-4B68-8772-47B9703D091F}</Project>
       <Name>Pwnsaw</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\BlankHero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\adagio.png" />
+    <Content Include="Resources\ardan.png" />
+    <Content Include="Resources\blackfeather.png" />
+    <Content Include="Resources\catherine.png" />
+    <Content Include="Resources\celeste.png" />
+    <Content Include="Resources\fortress.png" />
+    <Content Include="Resources\glaive.png" />
+    <Content Include="Resources\joule.png" />
+    <Content Include="Resources\kestrel.png" />
+    <Content Include="Resources\koshka.png" />
+    <Content Include="Resources\krul.png" />
+    <Content Include="Resources\ozo.png" />
+    <Content Include="Resources\petal.png" />
+    <Content Include="Resources\phinn.png" />
+    <Content Include="Resources\reim.png" />
+    <Content Include="Resources\ringo.png" />
+    <Content Include="Resources\rona.png" />
+    <Content Include="Resources\saw.png" />
+    <Content Include="Resources\skaarf.png" />
+    <Content Include="Resources\skye.png" />
+    <Content Include="Resources\taka.png" />
+    <Content Include="Resources\vox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -194,5 +194,11 @@ namespace HeroCreator
             }
         }
 
+		private void heroPollToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			var heroPollForm = new HeroPoll();
+
+			heroPollForm.Show();
+		}
     }
 }
