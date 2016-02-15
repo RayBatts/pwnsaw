@@ -71,6 +71,9 @@ namespace Pwnsaw
         {
             ThreatMatrix = new Dictionary<HeroType, float>();
             CompatibilityMatrix = new Dictionary<HeroType, float>();
+
+	        ResetThreatMatrix();
+			ResetCompatibilityMatrix();
         }
 
         #region Public API
@@ -91,7 +94,23 @@ namespace Pwnsaw
             return 0;
         }
 
-        #endregion
+		public void ResetThreatMatrix()
+		{
+			foreach( var key in ThreatMatrix.Keys.ToList() )
+			{
+				ThreatMatrix[ key ] = 0;
+			}
+		}
+
+	    public void ResetCompatibilityMatrix()
+	    {
+			foreach( var key in CompatibilityMatrix.Keys.ToList() )
+			{
+				CompatibilityMatrix[ key ] = 0;
+			}
+	    }
+
+	    #endregion
 
     }
 }
