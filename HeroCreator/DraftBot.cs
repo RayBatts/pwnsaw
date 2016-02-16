@@ -186,10 +186,5 @@ namespace HeroCreator
 
 			this.btnNextDraft.Visible = false;
 		}
-
-		private void draftOptionsToolStripMenuItem_Click( object sender, EventArgs e )
-		{
-
-		}
 	}
 }
