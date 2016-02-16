@@ -14,7 +14,7 @@ namespace HeroCreator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 			//Application.Run( new DraftBot() );
-			Application.Run( new HeroPoll() );
+			Application.Run( new TierRankings() );
         }
     }
 }

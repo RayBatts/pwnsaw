@@ -94,8 +94,8 @@ namespace HeroCreator
 
 				var curHeroImage = (Bitmap)Properties.Resources.ResourceManager.GetObject( curHero.ToString().ToLower() );
 
-				this.threatMatrixPanel.Controls.Add( CreatePictureBoxFromImage( curHeroImage ), 0, x );
-				this.compatibilityMatrixPanel.Controls.Add( CreatePictureBoxFromImage( curHeroImage ), 0, x );
+				this.threatMatrixPanel.Controls.Add( HeroCreatorUtils.CreatePictureBoxFromImage( curHeroImage ), 0, x );
+				this.compatibilityMatrixPanel.Controls.Add( HeroCreatorUtils.CreatePictureBoxFromImage( curHeroImage ), 0, x );
 
 				var threatRadioButtonsGroup = new FlowLayoutPanel()
 				{
@@ -184,10 +184,12 @@ namespace HeroCreator
 				return;
 			}
 
-			/*if( !( IsMatrixComplete( _heroThreatMatrices ) && IsMatrixComplete( _heroCompatibilityMatrices ) ) )
+#if !DEBUG
+			if( !( IsMatrixComplete( _heroThreatMatrices ) && IsMatrixComplete( _heroCompatibilityMatrices ) ) )
 			{
 				return;
-			}*/
+			}
+#endif
 
 			StoreCurHeroData();
 			ResetForm();
@@ -209,10 +211,12 @@ namespace HeroCreator
 				return;
 			}
 
-			/*if( !( IsMatrixComplete( _heroThreatMatrices ) && IsMatrixComplete( _heroCompatibilityMatrices ) ) )
+#if !DEBUG
+			if( !( IsMatrixComplete( _heroThreatMatrices ) && IsMatrixComplete( _heroCompatibilityMatrices ) ) )
 			{
 				return;
-			}*/
+			}
+#endif
 
 			StoreCurHeroData();
 			ResetForm();
@@ -322,15 +326,6 @@ namespace HeroCreator
 			}
 		}
 
-		private PictureBox CreatePictureBoxFromImage( Image heroImage )
-		{
-			var pictureSize = 25;
-			return new PictureBox()
-			{
-				Image = heroImage,
-				Size = new Size( pictureSize, pictureSize ),
-				SizeMode = PictureBoxSizeMode.StretchImage
-			};
-		}
+
 	}
 }
