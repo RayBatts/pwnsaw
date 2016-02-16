@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Permissions;
 
 namespace Pwnsaw.Draft
 {
@@ -15,16 +16,31 @@ namespace Pwnsaw.Draft
 			BluePick2,
 			BluePick3,
 			RedPick3,
-			Complete
+			Complete,
 	    }
+
+		public static readonly Dictionary<DraftPhase, TeamColor> TurnOrder = new Dictionary<DraftPhase, TeamColor>()
+		{
+			{ DraftPhase.FirstBan, TeamColor.Blue },
+			{ DraftPhase.SecondBan, TeamColor.Red },
+			{ DraftPhase.BluePick1, TeamColor.Blue },
+			{ DraftPhase.RedPick1, TeamColor.Red },
+			{ DraftPhase.RedPick2, TeamColor.Red },
+			{ DraftPhase.BluePick2, TeamColor.Blue },
+			{ DraftPhase.BluePick3, TeamColor.Blue },
+			{ DraftPhase.RedPick3, TeamColor.Red },
+		}; 
 
 	    public DraftPhase CurrentPhase { get; private set; }
 
 	    public List< DraftAction > DraftActions { get; private set; }
 	    public List< Hero > AvailableHeroes { get; private set; }
 
-	    public DraftData( IEnumerable<Hero> validHeroes )
+		private Random _rng;
+
+	    public DraftData( Random rng, IEnumerable<Hero> validHeroes )
 	    {
+		    _rng = rng;
 			DraftActions = new List< DraftAction >();
 			Reset( validHeroes );
 	    }
@@ -43,6 +59,13 @@ namespace Pwnsaw.Draft
 			AvailableHeroes.RemoveAt( heroIdx );
 
 		    CurrentPhase++;
+	    }
+
+	    public HeroType SelectRandomHero()
+	    {
+		    var randomIdx =_rng.Next( 0, AvailableHeroes.Count );
+
+			return AvailableHeroes[ randomIdx ].HType;
 	    }
 
 		public void Reset( IEnumerable<Hero> validHeroes )

@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Pwnsaw.Draft;
 
 namespace HeroCreator
 {
 	public partial class DraftOptions : Form
 	{
-		public DraftOptions()
+		private DraftBot _draftBot;
+		public DraftOptions( DraftBot draftBot )
 		{
+			_draftBot = draftBot;
+
+			this.Closed += OnOnFormClosed;
 			InitializeComponent();
+		}
+
+		void OnOnFormClosed( object sender, System.EventArgs e )
+		{
+			var teamColor = this.radioBtnBlueTeam.Checked ? TeamColor.Blue : TeamColor.Red;
+			_draftBot.SetOptions( teamColor, (int)this.numRoundsControl.Value );
 		}
 	}
 }

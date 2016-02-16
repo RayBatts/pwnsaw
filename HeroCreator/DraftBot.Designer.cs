@@ -50,6 +50,9 @@
 			this.imgRedBan = new System.Windows.Forms.PictureBox();
 			this.imgBlueBan = new System.Windows.Forms.PictureBox();
 			this.btnNextDraft = new System.Windows.Forms.Button();
+			this.utilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.heroPollToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.heroGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.imgRedTeamBanOverlay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.imgBlueTeamBanOverlay)).BeginInit();
@@ -100,7 +103,8 @@
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.utilToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(772, 24);
@@ -258,6 +262,27 @@
 			this.btnNextDraft.UseVisualStyleBackColor = true;
 			this.btnNextDraft.Visible = false;
 			// 
+			// utilToolStripMenuItem
+			// 
+			this.utilToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.heroPollToolStripMenuItem,
+            this.heroGeneratorToolStripMenuItem});
+			this.utilToolStripMenuItem.Name = "utilToolStripMenuItem";
+			this.utilToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+			this.utilToolStripMenuItem.Text = "Util";
+			// 
+			// heroPollToolStripMenuItem
+			// 
+			this.heroPollToolStripMenuItem.Name = "heroPollToolStripMenuItem";
+			this.heroPollToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+			this.heroPollToolStripMenuItem.Text = "Hero Poll";
+			// 
+			// heroGeneratorToolStripMenuItem
+			// 
+			this.heroGeneratorToolStripMenuItem.Name = "heroGeneratorToolStripMenuItem";
+			this.heroGeneratorToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+			this.heroGeneratorToolStripMenuItem.Text = "Hero Generator";
+			// 
 			// DraftBot
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,5 +349,8 @@
 		private System.Windows.Forms.Label lblCurrentPhase;
 		private System.Windows.Forms.Label lblRoundCount;
 		private System.Windows.Forms.Button btnNextDraft;
+		private System.Windows.Forms.ToolStripMenuItem utilToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem heroPollToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem heroGeneratorToolStripMenuItem;
 	}
 }

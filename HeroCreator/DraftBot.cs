@@ -15,7 +15,7 @@ namespace HeroCreator
 		readonly private Dictionary<PictureBox, HeroType> _buttonToHeroLookup = new Dictionary<PictureBox, HeroType>();
 		readonly private Dictionary<HeroType, PictureBox> _heroToButtonLoookup = new Dictionary<HeroType, PictureBox>();
 
-		private TeamColor _playerTeamColor;
+		public TeamColor _playerTeamColor;
 
 		public DraftBot()
 		{
@@ -26,9 +26,27 @@ namespace HeroCreator
 			_draftManager.Reset( _playerTeamColor );
 		}
 
+		public void SetOptions( TeamColor playerTeam, int roundNum )
+		{
+			if( roundNum < 1 || roundNum > 5 )
+			{
+				return;
+			}
+
+			_playerTeamColor = playerTeam;
+
+			_draftManager.RoundCount = roundNum;
+			_draftManager.Reset( _playerTeamColor );
+		}
+
 		private void InitializeForm()
 		{
 			this.resetDraftToolStripMenuItem.Click += (s, e) => ResetDraft();
+			this.draftOptionsToolStripMenuItem.Click += (s, e) =>
+			{
+				var optionsForm = new DraftOptions( this );
+
+			};
 			this.btnNextDraft.Click += (s, e) => ResetDraft();
 
 			imgBlueTeamBanOverlay.Parent = imgBlueBan;
@@ -165,6 +183,11 @@ namespace HeroCreator
 			}
 
 			this.btnNextDraft.Visible = false;
+		}
+
+		private void draftOptionsToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+
 		}
 	}
 }

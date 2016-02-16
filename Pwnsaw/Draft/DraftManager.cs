@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pwnsaw.Draft;
@@ -9,7 +10,7 @@ namespace Pwnsaw
     {
 	    private const int MAX_DRAFTS = 10;
 
-	    public int RoundCount = 5;
+	    public int RoundCount = 5;	
 
 		private readonly Stack<DraftData> _draftDataPool = new Stack<DraftData>( MAX_DRAFTS ); 
 		private readonly List< DraftData > _previousDrafts = new List< DraftData >();
@@ -19,6 +20,8 @@ namespace Pwnsaw
 	    private DraftData _currentDraft;
 
 		public event System.Action<HeroType> OnHeroChosen;
+
+	    private TeamColor _playerTeamColor;
 
 	    public int CurrentRound
 	    {
@@ -37,9 +40,10 @@ namespace Pwnsaw
 	    {
 			InitializeHeroPool();
 
+		    var rng = new Random();
 		    for( var x = 0; x < MAX_DRAFTS; x++ )
 		    {
-				_draftDataPool.Push( new DraftData( _heroPool.Values.ToList() ) );
+				_draftDataPool.Push( new DraftData( rng, _heroPool.Values.ToList() ) );
 		    }
 	    }
 
@@ -52,6 +56,8 @@ namespace Pwnsaw
 
 	    public void Reset( TeamColor playerTeamColor )
 	    {
+		    _playerTeamColor = playerTeamColor;
+
 		    if( _currentDraft != null )
 		    {
 				_previousDrafts.Add( _currentDraft );
@@ -70,6 +76,8 @@ namespace Pwnsaw
 		    }
 
 			_currentDraft = _draftDataPool.Pop();
+
+			PlayCpuTurn();
 	    }
 
 	    public void SubmitDraftAction( HeroType heroType )
@@ -84,6 +92,16 @@ namespace Pwnsaw
 			}
 
 			_currentDraft.SubmitDraftAction( new DraftAction( TeamColor.Blue, actionType, hType ) );
+
+		    PlayCpuTurn();
+	    }
+
+	    private void PlayCpuTurn()
+	    {
+			while( this.CurrentDraftPhase != DraftData.DraftPhase.Complete && DraftData.TurnOrder[ this.CurrentDraftPhase ] != _playerTeamColor )
+			{
+				SubmitDraftAction( _currentDraft.SelectRandomHero() );
+			}
 	    }
 
 		private void tempInitializeHeroData()
