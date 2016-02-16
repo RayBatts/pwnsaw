@@ -38,6 +38,8 @@
 			this.compatibilityMatrixPanel = new System.Windows.Forms.TableLayoutPanel();
 			this.matrixLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.tbInGameName = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.imgCurHero)).BeginInit();
 			this.matrixLayoutPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -241,6 +243,22 @@
 			this.panel1.Size = new System.Drawing.Size(479, 34);
 			this.panel1.TabIndex = 9;
 			// 
+			// tbInGameName
+			// 
+			this.tbInGameName.Location = new System.Drawing.Point(397, 136);
+			this.tbInGameName.Name = "tbInGameName";
+			this.tbInGameName.Size = new System.Drawing.Size(100, 20);
+			this.tbInGameName.TabIndex = 9;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(294, 139);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(97, 13);
+			this.label3.TabIndex = 10;
+			this.label3.Text = "Your Vainglory IGN";
+			// 
 			// HeroPoll
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +266,8 @@
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.ClientSize = new System.Drawing.Size(634, 643);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.tbInGameName);
 			this.Controls.Add(this.matrixLayoutPanel);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.lblCurHeroName);
@@ -275,5 +295,7 @@
 		private System.Windows.Forms.TableLayoutPanel compatibilityMatrixPanel;
 		private System.Windows.Forms.FlowLayoutPanel matrixLayoutPanel;
 		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.TextBox tbInGameName;
+		private System.Windows.Forms.Label label3;
 	}
 }

@@ -15,7 +15,7 @@ namespace HeroCreator
 
 		private PictureBox _selectedPictureBox = null;
 
-		public readonly List< HeroType > _heroRankings = new List< HeroType >(); 
+		public readonly List< HeroType > HeroRankings = new List< HeroType >(); 
 
 		public TierRankings()
 		{
@@ -34,7 +34,7 @@ namespace HeroCreator
 
 			for( var x = 0; x < numEntries; x++)
 			{
-				_heroRankings.Add( HeroType.Adagio );
+				HeroRankings.Add( HeroType.Adagio );
 			}
 
 			foreach( var ctrl in this.heroTierListings.Controls  )
@@ -47,7 +47,7 @@ namespace HeroCreator
 
 				// insert it in the correct index.
 				var index = heroTierListings.Controls.GetChildIndex( heroPicture );
-				_heroRankings[ index ] = _pictureboxHeroTypeLookup[ heroPicture ];
+				HeroRankings[ index ] = _pictureboxHeroTypeLookup[ heroPicture ];
 			}
 		}
 

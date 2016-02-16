@@ -201,16 +201,28 @@ namespace HeroCreator
 			{
 				this.btnPrevHero.Visible = false;
 			}
+
+			this.btnNextHero.Text = "Next Hero";
 		}
 
-		private void OnNextHeroBtnClicked( object sender, EventArgs eventArgs )
+		private void HeroTierRankingsComplete( object sender, EventArgs e )
 		{
-			// TODO: Check that everything is valid and then open the tier ranker.
-			if( _curHero == HeroType.Vox )
+			var rankingsForm = sender as TierRankings;
+			if( rankingsForm == null )
 			{
 				return;
 			}
 
+			foreach( var kvp in _allheroData )
+			{
+				kvp.Value.Ranking = rankingsForm.HeroRankings.IndexOf( kvp.Key ) + 1;
+			}
+
+			// At this point we have all of the data we need. Ship it off into the google doc.
+		}
+
+		private void OnNextHeroBtnClicked( object sender, EventArgs eventArgs )
+		{
 #if !DEBUG
 			if( !( IsMatrixComplete( _heroThreatMatrices ) && IsMatrixComplete( _heroCompatibilityMatrices ) ) )
 			{
@@ -218,13 +230,25 @@ namespace HeroCreator
 			}
 #endif
 
+			// TODO: Check that everything is valid and then open the tier ranker.
+			if( _curHero == HeroType.Vox )
+			{
+				var heroPollForm = new TierRankings();
+
+				heroPollForm.Closed += HeroTierRankingsComplete;
+
+				heroPollForm.ShowDialog();
+
+				return;
+			}
+
 			StoreCurHeroData();
 			ResetForm();
 			SetHero( _curHero + 1 );
 
 			if( _curHero == HeroType.Vox )
 			{
-				this.btnNextHero.Visible = false;
+				this.btnNextHero.Text = "Finish";
 			}
 
 			this.btnPrevHero.Visible = true;
