@@ -23,6 +23,8 @@ namespace Pwnsaw
 
 	    private TeamColor _playerTeamColor;
 
+	    public bool CpuEnabled = false;
+
 	    public int CurrentRound
 	    {
 		    get
@@ -98,6 +100,11 @@ namespace Pwnsaw
 
 	    private void PlayCpuTurn()
 	    {
+		    if( !CpuEnabled )
+		    {
+			    return;
+		    }
+
 			while( this.CurrentDraftPhase != DraftData.DraftPhase.Complete && DraftData.TurnOrder[ this.CurrentDraftPhase ] != _playerTeamColor )
 			{
 				SubmitDraftAction( _currentDraft.SelectRandomHero() );

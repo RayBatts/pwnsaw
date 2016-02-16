@@ -35,8 +35,9 @@
 			this.numRoundsControl = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.btnOnlineData = new System.Windows.Forms.RadioButton();
 			this.btnLocalCacheData = new System.Windows.Forms.RadioButton();
+			this.btnOnlineData = new System.Windows.Forms.RadioButton();
+			this.chkEnableAI = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numRoundsControl)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -77,7 +78,7 @@
 			// 
 			// btnConfirmOptions
 			// 
-			this.btnConfirmOptions.Location = new System.Drawing.Point(64, 242);
+			this.btnConfirmOptions.Location = new System.Drawing.Point(65, 261);
 			this.btnConfirmOptions.Name = "btnConfirmOptions";
 			this.btnConfirmOptions.Size = new System.Drawing.Size(59, 22);
 			this.btnConfirmOptions.TabIndex = 1;
@@ -126,6 +127,16 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Data Type";
 			// 
+			// btnLocalCacheData
+			// 
+			this.btnLocalCacheData.AutoSize = true;
+			this.btnLocalCacheData.Location = new System.Drawing.Point(6, 42);
+			this.btnLocalCacheData.Name = "btnLocalCacheData";
+			this.btnLocalCacheData.Size = new System.Drawing.Size(99, 17);
+			this.btnLocalCacheData.TabIndex = 1;
+			this.btnLocalCacheData.Text = "Use Local Data";
+			this.btnLocalCacheData.UseVisualStyleBackColor = true;
+			// 
 			// btnOnlineData
 			// 
 			this.btnOnlineData.AutoSize = true;
@@ -138,21 +149,24 @@
 			this.btnOnlineData.Text = "Use Online Data";
 			this.btnOnlineData.UseVisualStyleBackColor = true;
 			// 
-			// btnLocalCacheData
+			// chkEnableAI
 			// 
-			this.btnLocalCacheData.AutoSize = true;
-			this.btnLocalCacheData.Location = new System.Drawing.Point(6, 42);
-			this.btnLocalCacheData.Name = "btnLocalCacheData";
-			this.btnLocalCacheData.Size = new System.Drawing.Size(99, 17);
-			this.btnLocalCacheData.TabIndex = 1;
-			this.btnLocalCacheData.Text = "Use Local Data";
-			this.btnLocalCacheData.UseVisualStyleBackColor = true;
+			this.chkEnableAI.AutoSize = true;
+			this.chkEnableAI.Checked = true;
+			this.chkEnableAI.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkEnableAI.Location = new System.Drawing.Point(65, 238);
+			this.chkEnableAI.Name = "chkEnableAI";
+			this.chkEnableAI.Size = new System.Drawing.Size(72, 17);
+			this.chkEnableAI.TabIndex = 5;
+			this.chkEnableAI.Text = "Enable AI";
+			this.chkEnableAI.UseVisualStyleBackColor = true;
 			// 
 			// DraftOptions
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(204, 280);
+			this.ClientSize = new System.Drawing.Size(204, 293);
+			this.Controls.Add(this.chkEnableAI);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.numRoundsControl);
@@ -182,5 +196,6 @@
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.RadioButton btnLocalCacheData;
 		private System.Windows.Forms.RadioButton btnOnlineData;
+		private System.Windows.Forms.CheckBox chkEnableAI;
 	}
 }

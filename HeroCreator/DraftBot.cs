@@ -26,7 +26,7 @@ namespace HeroCreator
 			_draftManager.Reset( _playerTeamColor );
 		}
 
-		public void SetOptions( TeamColor playerTeam, int roundNum )
+		public void SetOptions( TeamColor playerTeam, int roundNum, bool enableAI )
 		{
 			if( roundNum < 1 || roundNum > 5 )
 			{
@@ -36,6 +36,7 @@ namespace HeroCreator
 			_playerTeamColor = playerTeam;
 
 			_draftManager.RoundCount = roundNum;
+			_draftManager.CpuEnabled = enableAI;
 			_draftManager.Reset( _playerTeamColor );
 		}
 
@@ -45,7 +46,7 @@ namespace HeroCreator
 			this.draftOptionsToolStripMenuItem.Click += (s, e) =>
 			{
 				var optionsForm = new DraftOptions( this );
-
+				optionsForm.ShowDialog();
 			};
 			this.btnNextDraft.Click += (s, e) => ResetDraft();
 
