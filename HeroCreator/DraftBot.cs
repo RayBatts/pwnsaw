@@ -12,8 +12,8 @@ namespace HeroCreator
 	{
 		private DraftManager _draftManager = new DraftManager();
 
-		private Dictionary<PictureBox, HeroType> _buttonToHeroLookup = new Dictionary<PictureBox, HeroType>();
-		private Dictionary<HeroType, PictureBox> _heroToButtonLoookup = new Dictionary<HeroType, PictureBox>();
+		readonly private Dictionary<PictureBox, HeroType> _buttonToHeroLookup = new Dictionary<PictureBox, HeroType>();
+		readonly private Dictionary<HeroType, PictureBox> _heroToButtonLoookup = new Dictionary<HeroType, PictureBox>();
 
 		private TeamColor _playerTeamColor;
 
