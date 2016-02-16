@@ -122,6 +122,8 @@ namespace HeroCreator
 			selectedImage.Image = imgBox.BackgroundImage;
 
 			SubmitAction( _buttonToHeroLookup[ imgBox ] );
+
+			this.lblCurrentPhase.Text = _draftManager.CurrentDraftPhase.ToString();
 		}
 
 		private void SubmitAction( HeroType heroType )
@@ -131,6 +133,8 @@ namespace HeroCreator
 
 		private void ResetDraft()
 		{
+			_draftManager.Reset( _playerTeamColor );
+
 			this.imgBlueBan.Image = Resources.BlankHero;
 			this.imgRedBan.Image = Resources.BlankHero;
 			
@@ -145,12 +149,12 @@ namespace HeroCreator
 			imgBlueTeamBanOverlay.Visible = false;
 			imgRedTeamBanOverlay.Visible = false;
 
+			this.lblCurrentPhase.Text = _draftManager.CurrentDraftPhase.ToString();
+
 			foreach( var kvp in _heroToButtonLoookup )
 			{
 				kvp.Value.Image = null;
 			}
-
-			_draftManager.Reset( _playerTeamColor );
 		}
 	}
 }
