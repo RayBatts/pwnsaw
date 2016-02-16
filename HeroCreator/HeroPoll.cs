@@ -10,9 +10,16 @@ namespace HeroCreator
 	{
 		private readonly string _heroDataFilename = "Data/CombinedHeroFile.xml";
 
+		enum MatrixType
+		{
+			ThreatMatrix,
+			CompatibilityMatrix
+		}
+
 		private HeroType _curHero = HeroType.Adagio;
 		private readonly Dictionary<HeroType, Hero> _allheroData = new Dictionary< HeroType, Hero >();
-		private readonly Dictionary<HeroType, FlowLayoutPanel> _heroThreatMatrices = new Dictionary<HeroType, FlowLayoutPanel>(); 
+		private readonly Dictionary<HeroType, FlowLayoutPanel> _heroThreatMatrices = new Dictionary<HeroType, FlowLayoutPanel>();
+		private readonly Dictionary<HeroType, FlowLayoutPanel> _heroCompatibilityMatrices = new Dictionary<HeroType, FlowLayoutPanel>(); 
 
 		public HeroPoll()
 		{
@@ -35,12 +42,17 @@ namespace HeroCreator
 
 			lblCurHeroName.Text = hero.DisplayName;
 
-			// Initialize our threat matrix.
-			foreach( var kvp in _heroThreatMatrices )
+			ReinitializeMatrix(_heroThreatMatrices, hero.ThreatMatrix  );
+			ReinitializeMatrix( _heroCompatibilityMatrices, hero.CompatibilityMatrix );
+		}
+
+		private void ReinitializeMatrix( Dictionary<HeroType, FlowLayoutPanel> matrixControls,  Dictionary<HeroType, float> heroMatrix )
+		{
+			foreach( var kvp in matrixControls )
 			{
 				var buttonIdx = 0;
 
-				var heroThreat = hero.ThreatMatrix[ kvp.Key ];
+				var heroValue = heroMatrix[ kvp.Key ];
 
 				foreach( var ctrl in kvp.Value.Controls )
 				{
@@ -53,9 +65,9 @@ namespace HeroCreator
 
 					buttonIdx++;
 
-					if( heroThreat != 0 )
+					if( heroValue != 0 )
 					{
-						rb.Checked = ( heroThreat == buttonIdx );
+						rb.Checked = ( heroValue == buttonIdx );
 						continue;
 					}
 
@@ -69,7 +81,8 @@ namespace HeroCreator
 			var heroes = Enum.GetValues( typeof( HeroType ) );
 			var numheroes = heroes.Length;
 
-			this.threatMatrixPanel.MaximumSize = new Size(0, 285);
+			this.threatMatrixPanel.MaximumSize = new Size( 0, 285 );
+			this.compatibilityMatrixPanel.MaximumSize = new Size( 0, 285 );
 
 			var radioButtongroupSize = new Size( 80 * 5, 25 );
 			var rbHSpacing = 25;
@@ -82,25 +95,46 @@ namespace HeroCreator
 				var curHeroImage = (Bitmap)Properties.Resources.ResourceManager.GetObject( curHero.ToString().ToLower() );
 
 				this.threatMatrixPanel.Controls.Add( CreatePictureBoxFromImage( curHeroImage ), 0, x );
+				this.compatibilityMatrixPanel.Controls.Add( CreatePictureBoxFromImage( curHeroImage ), 0, x );
 
-				var radioButtonsGroup = new FlowLayoutPanel()
+				var threatRadioButtonsGroup = new FlowLayoutPanel()
 				{
 					FlowDirection = FlowDirection.LeftToRight,
 					Size = radioButtongroupSize,
 					WrapContents = false,
 				};
 
-				_heroThreatMatrices.Add( curHero, radioButtonsGroup );
+				_heroThreatMatrices.Add( curHero, threatRadioButtonsGroup );
 
 				for( var y = 0; y < 5; y++ )
 				{
 					var rb = new RadioButton();
 					rb.Margin = rbMargin;
 					rb.AutoSize = true;
-					radioButtonsGroup.Controls.Add( rb );		
+					threatRadioButtonsGroup.Controls.Add( rb );		
 				}
 
-				this.threatMatrixPanel.Controls.Add( radioButtonsGroup, 1, x );
+				this.threatMatrixPanel.Controls.Add( threatRadioButtonsGroup, 1, x );
+				
+
+				var compatibilityRdioBtnGroup = new FlowLayoutPanel()
+				{
+					FlowDirection = FlowDirection.LeftToRight,
+					Size = radioButtongroupSize,
+					WrapContents = false,
+				};
+
+				_heroCompatibilityMatrices.Add( curHero, compatibilityRdioBtnGroup );
+
+				for( var y = 0; y < 3; y++ )
+				{
+					var rb = new RadioButton();
+					rb.Margin = rbMargin;
+					rb.AutoSize = true;
+					compatibilityRdioBtnGroup.Controls.Add( rb );
+				}
+
+				this.compatibilityMatrixPanel.Controls.Add( compatibilityRdioBtnGroup, 1, x );
 			}
 		}
 
@@ -110,6 +144,39 @@ namespace HeroCreator
 			this.btnPrevHero.Click += OnPrevHeroBtnClicked;
 		}
 
+		public bool IsMatrixComplete( Dictionary<HeroType, FlowLayoutPanel> matrixPanel )
+		{
+			var valueSelected = false;
+			foreach( var kvp in matrixPanel )
+			{
+				valueSelected = false;
+
+				foreach( var ctrl in kvp.Value.Controls )
+				{
+					var rb = ctrl as RadioButton;
+
+					if( rb == null )
+					{
+						continue;
+					}
+
+					if( rb.Checked )
+					{
+						valueSelected = true;
+						break;
+					}
+				}
+
+				if( !valueSelected )
+				{
+					MessageBox.Show( string.Format( "Please finish filling out matrix for hero {0}", kvp.Key) );
+					return false;
+				}
+			}
+
+			return true;
+		}
+
 		private void OnPrevHeroBtnClicked( object sender, EventArgs eventArgs )
 		{
 			if( _curHero == HeroType.Adagio )
@@ -117,26 +184,57 @@ namespace HeroCreator
 				return;
 			}
 
+			/*if( !( IsMatrixComplete( _heroThreatMatrices ) && IsMatrixComplete( _heroCompatibilityMatrices ) ) )
+			{
+				return;
+			}*/
+
 			StoreCurHeroData();
 			ResetForm();
 			SetHero( _curHero - 1 );
+
+			this.btnNextHero.Visible = true;
+
+			if( _curHero == HeroType.Adagio )
+			{
+				this.btnPrevHero.Visible = false;
+			}
 		}
 
 		private void OnNextHeroBtnClicked( object sender, EventArgs eventArgs )
 		{
+			// TODO: Check that everything is valid and then open the tier ranker.
 			if( _curHero == HeroType.Vox )
 			{
 				return;
 			}
 
+			/*if( !( IsMatrixComplete( _heroThreatMatrices ) && IsMatrixComplete( _heroCompatibilityMatrices ) ) )
+			{
+				return;
+			}*/
+
 			StoreCurHeroData();
 			ResetForm();
 			SetHero( _curHero + 1 );
+
+			if( _curHero == HeroType.Vox )
+			{
+				this.btnNextHero.Visible = false;
+			}
+
+			this.btnPrevHero.Visible = true;
 		}
 
 		private void ResetForm()
 		{
-			foreach( var kvp in _heroThreatMatrices )
+			ResetMatrix( _heroThreatMatrices );
+			ResetMatrix( _heroCompatibilityMatrices );
+		}
+
+		private void ResetMatrix( Dictionary<HeroType, FlowLayoutPanel> matrixToReset )
+		{
+			foreach( var kvp in matrixToReset )
 			{
 				foreach( var ctrl in kvp.Value.Controls )
 				{
@@ -171,16 +269,22 @@ namespace HeroCreator
 
 		private void StoreCurHeroData()
 		{
+			StoreMatrixValues( MatrixType.ThreatMatrix, _heroThreatMatrices );
+			StoreMatrixValues( MatrixType.CompatibilityMatrix, _heroCompatibilityMatrices );
+		}
+
+		private void StoreMatrixValues( MatrixType matrixType, Dictionary<HeroType, FlowLayoutPanel> heroMasdatrix )
+		{
 			var curHero = _allheroData[ _curHero ];
 
-			var heroMatrix = curHero.ThreatMatrix;
+			var matrix = matrixType == MatrixType.ThreatMatrix ? curHero.ThreatMatrix : curHero.CompatibilityMatrix;
 
-			// Store their threat matrix
-			foreach( var kvp in _heroThreatMatrices )
+			var heroMatrices = matrixType == MatrixType.ThreatMatrix ? _heroThreatMatrices : _heroCompatibilityMatrices;
+			foreach( var kvp in heroMatrices )
 			{
 				var threateningHero = kvp.Key;
-				var threatValue = 0;
-				var maxThreatValue = 0;
+				var value = 0;
+				var maxValue = 0;
 
 				foreach( var ctrl in kvp.Value.Controls )
 				{
@@ -191,17 +295,16 @@ namespace HeroCreator
 						continue;
 					}
 
-					maxThreatValue++;
+					maxValue++;
 
 					if( rButton.Checked )
 					{
-						threatValue = maxThreatValue;
-						heroMatrix[ threateningHero ] = threatValue;
+						value = maxValue;
+						matrix[ threateningHero ] = value;
 					}
 				}
 
-				// Update that hero's value with the inverse threat value
-
+				// Update that hero's value with the inverse value
 				if( _curHero == kvp.Key )
 				{
 					continue;
@@ -209,13 +312,14 @@ namespace HeroCreator
 
 				var invHero = _allheroData[ kvp.Key ];
 
-				if( threatValue != 0 && invHero.ThreatMatrix[ _curHero ] == 0 )
+				var otherHeroMatrix = matrixType == MatrixType.ThreatMatrix ? invHero.ThreatMatrix : invHero.CompatibilityMatrix;
+
+				if( value != 0 && otherHeroMatrix[ _curHero ] == 0 )
 				{
-					invHero.ThreatMatrix[ _curHero ] = ++maxThreatValue - threatValue;
+					// Compatibility matrices should match up, while threats should use the inverse.
+					otherHeroMatrix[ _curHero ] = matrixType == MatrixType.ThreatMatrix ? ++maxValue - value : value;
 				}
 			}
-
-			//TODO: Store their compatibility matrix.
 		}
 
 		private PictureBox CreatePictureBoxFromImage( Image heroImage )
