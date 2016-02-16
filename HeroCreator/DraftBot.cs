@@ -150,6 +150,7 @@ namespace HeroCreator
 			imgRedTeamBanOverlay.Visible = false;
 
 			this.lblCurrentPhase.Text = _draftManager.CurrentDraftPhase.ToString();
+			this.lblRoundCount.Text = string.Format( "Current Round: {0} / {1}", _draftManager.CurrentRound, _draftManager.RoundCount );
 
 			foreach( var kvp in _heroToButtonLoookup )
 			{

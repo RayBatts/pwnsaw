@@ -26,7 +26,7 @@ namespace Pwnsaw.Draft
 	    public DraftData( IEnumerable<Hero> validHeroes )
 	    {
 			DraftActions = new List< DraftAction >();
-			AvailableHeroes = new List<Hero>( validHeroes );
+			Reset( validHeroes );
 	    }
 
 	    public void SubmitDraftAction( DraftAction action )
@@ -43,6 +43,14 @@ namespace Pwnsaw.Draft
 			AvailableHeroes.RemoveAt( heroIdx );
 
 		    CurrentPhase++;
+	    }
+
+		public void Reset( IEnumerable<Hero> validHeroes )
+	    {
+			CurrentPhase = DraftPhase.FirstBan;
+
+			AvailableHeroes = new List<Hero>( validHeroes );
+		    DraftActions.Clear();
 	    }
     }
 }

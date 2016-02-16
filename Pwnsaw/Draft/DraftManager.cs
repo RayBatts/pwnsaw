@@ -9,12 +9,22 @@ namespace Pwnsaw
     {
 	    private const int MAX_DRAFTS = 10;
 
-		private readonly List<DraftData> _draftDataPool = new List<DraftData>( MAX_DRAFTS ); 
+	    public int RoundCount = 5;
+
+		private readonly Stack<DraftData> _draftDataPool = new Stack<DraftData>( MAX_DRAFTS ); 
 		private readonly List< DraftData > _previousDrafts = new List< DraftData >();
 
 	    private readonly Dictionary< HeroType, Hero > _heroPool = new Dictionary< HeroType, Hero >(); 
 
 	    private DraftData _currentDraft;
+
+	    public int CurrentRound
+	    {
+		    get
+		    {
+				return _previousDrafts.Count + 1;
+		    }
+	    }
 
 	    public DraftData.DraftPhase CurrentDraftPhase
 	    {
@@ -23,18 +33,19 @@ namespace Pwnsaw
 
 	    public DraftManager()
 	    {
+			InitializeHeroPool();
+
 		    for( var x = 0; x < MAX_DRAFTS; x++ )
 		    {
-				_draftDataPool.Add( new DraftData( _heroPool.Values.ToList() ) );
+				_draftDataPool.Push( new DraftData( _heroPool.Values.ToList() ) );
 		    }
-
-		    tempInitializeHeroData();
 	    }
 
 		private void InitializeHeroPool()
 	    {
 			// TODO: Get the .csv or whatever and create heroes based off averages.
-		    
+
+			tempInitializeHeroData();
 	    }
 
 	    public void Reset( TeamColor playerTeamColor )
@@ -44,7 +55,19 @@ namespace Pwnsaw
 				_previousDrafts.Add( _currentDraft );
 		    }
 
-			_currentDraft = new DraftData( _heroPool.Values.ToList() );
+		    if( CurrentRound >= RoundCount )
+		    {
+				var heroes = _heroPool.Values;
+			    foreach( var draft in _previousDrafts )
+			    {
+					draft.Reset( heroes );
+				    _draftDataPool.Push( draft );
+			    }
+
+				_previousDrafts.Clear();   
+		    }
+
+			_currentDraft = _draftDataPool.Pop();
 	    }
 
 	    public void SubmitDraftAction( HeroType heroType )
