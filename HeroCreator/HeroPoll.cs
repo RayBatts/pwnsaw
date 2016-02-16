@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Runtime.Serialization;
 using System.Windows.Forms;
-using System.Xml;
 using Pwnsaw;
 
 namespace HeroCreator
@@ -23,7 +20,6 @@ namespace HeroCreator
 			InitializeHeroes();
 			InitializeForm();
 			InitializeButtons();
-
 			
 			SetHero( _curHero );
 		}
@@ -158,29 +154,11 @@ namespace HeroCreator
 
 		private void InitializeHeroes()
 		{
-			var heroSerializer = new DataContractSerializer( typeof( List<Hero> ) );
+			var heroesList = Util.DeserializeHeroList( this._heroDataFilename );
 
-			using( var dataFileStream = new FileStream( this._heroDataFilename, FileMode.Open )  )
+			foreach( var hero in heroesList )
 			{
-				var dictReader = XmlDictionaryReader.CreateTextReader( dataFileStream, new XmlDictionaryReaderQuotas() );
-
-				while( dictReader.Read() )
-				{
-
-					switch( dictReader.NodeType )
-					{
-						case XmlNodeType.Element:
-							if( heroSerializer.IsStartObject( dictReader ) )
-							{
-								var herosList = (List<Hero>)heroSerializer.ReadObject( dictReader );
-								foreach( var hero in herosList )
-								{
-									_allheroData[hero.HType] = hero;
-								}
-							}
-							break;
-					}
-				}
+				_allheroData[ hero.HType ] = hero;
 			}
 
 			// reinitialize all values for this local copy.
@@ -188,7 +166,6 @@ namespace HeroCreator
 			{
 				kvp.Value.ResetCompatibilityMatrix();
 				kvp.Value.ResetThreatMatrix();
-				
 			}
 		}
 

@@ -67,6 +67,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DraftBot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DraftBot.Designer.cs">
+      <DependentUpon>DraftBot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DraftOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DraftOptions.Designer.cs">
+      <DependentUpon>DraftOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="HeroGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +93,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DraftBot.resx">
+      <DependentUpon>DraftBot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DraftOptions.resx">
+      <DependentUpon>DraftOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HeroGenerator.resx">
       <DependentUpon>HeroGenerator.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,10 +207,12 @@
     <Content Include="Resources\adagio.png" />
     <Content Include="Resources\ardan.png" />
     <Content Include="Resources\blackfeather.png" />
+    <None Include="Resources\blueTeamBan.png" />
     <Content Include="Resources\catherine.png" />
     <Content Include="Resources\celeste.png" />
     <Content Include="Resources\fortress.png" />
     <Content Include="Resources\glaive.png" />
+    <None Include="Resources\GrayOutOverlay.png" />
     <Content Include="Resources\joule.png" />
     <Content Include="Resources\kestrel.png" />
     <Content Include="Resources\koshka.png" />
@@ -200,6 +220,7 @@
     <Content Include="Resources\ozo.png" />
     <Content Include="Resources\petal.png" />
     <Content Include="Resources\phinn.png" />
+    <None Include="Resources\redTeamban.png" />
     <Content Include="Resources\reim.png" />
     <Content Include="Resources\ringo.png" />
     <Content Include="Resources\rona.png" />

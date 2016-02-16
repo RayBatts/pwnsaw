@@ -103,6 +103,16 @@ namespace HeroCreator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blueTeamBan {
+            get {
+                object obj = ResourceManager.GetObject("blueTeamBan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap catherine {
             get {
                 object obj = ResourceManager.GetObject("catherine", resourceCulture);
@@ -136,6 +146,16 @@ namespace HeroCreator.Properties {
         internal static System.Drawing.Bitmap glaive {
             get {
                 object obj = ResourceManager.GetObject("glaive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GrayOutOverlay {
+            get {
+                object obj = ResourceManager.GetObject("GrayOutOverlay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +226,16 @@ namespace HeroCreator.Properties {
         internal static System.Drawing.Bitmap phinn {
             get {
                 object obj = ResourceManager.GetObject("phinn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap redTeamban {
+            get {
+                object obj = ResourceManager.GetObject("redTeamban", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

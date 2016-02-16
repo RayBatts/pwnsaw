@@ -187,4 +187,13 @@
   <data name="vox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="blueTeamBan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blueTeamBan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redTeamban" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redTeamban.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GrayOutOverlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GrayOutOverlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
