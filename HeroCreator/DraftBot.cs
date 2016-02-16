@@ -37,7 +37,8 @@ namespace HeroCreator
 
 			_draftManager.RoundCount = roundNum;
 			_draftManager.CpuEnabled = enableAI;
-			_draftManager.Reset( _playerTeamColor );
+
+			this.ResetDraft();
 		}
 
 		private void InitializeForm()

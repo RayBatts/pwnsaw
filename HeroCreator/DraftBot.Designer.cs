@@ -37,6 +37,9 @@
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resetDraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.draftOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.utilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.heroPollToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.heroGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.lblCurrentPhase = new System.Windows.Forms.Label();
 			this.lblRoundCount = new System.Windows.Forms.Label();
 			this.imgRedTeamBanOverlay = new System.Windows.Forms.PictureBox();
@@ -50,9 +53,6 @@
 			this.imgRedBan = new System.Windows.Forms.PictureBox();
 			this.imgBlueBan = new System.Windows.Forms.PictureBox();
 			this.btnNextDraft = new System.Windows.Forms.Button();
-			this.utilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.heroPollToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.heroGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.imgRedTeamBanOverlay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.imgBlueTeamBanOverlay)).BeginInit();
@@ -123,14 +123,35 @@
 			// resetDraftToolStripMenuItem
 			// 
 			this.resetDraftToolStripMenuItem.Name = "resetDraftToolStripMenuItem";
-			this.resetDraftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.resetDraftToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
 			this.resetDraftToolStripMenuItem.Text = "Restart Draft";
 			// 
 			// draftOptionsToolStripMenuItem
 			// 
 			this.draftOptionsToolStripMenuItem.Name = "draftOptionsToolStripMenuItem";
-			this.draftOptionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.draftOptionsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
 			this.draftOptionsToolStripMenuItem.Text = "Draft Options";
+			// 
+			// utilToolStripMenuItem
+			// 
+			this.utilToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.heroPollToolStripMenuItem,
+            this.heroGeneratorToolStripMenuItem});
+			this.utilToolStripMenuItem.Name = "utilToolStripMenuItem";
+			this.utilToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+			this.utilToolStripMenuItem.Text = "Util";
+			// 
+			// heroPollToolStripMenuItem
+			// 
+			this.heroPollToolStripMenuItem.Name = "heroPollToolStripMenuItem";
+			this.heroPollToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+			this.heroPollToolStripMenuItem.Text = "Hero Poll";
+			// 
+			// heroGeneratorToolStripMenuItem
+			// 
+			this.heroGeneratorToolStripMenuItem.Name = "heroGeneratorToolStripMenuItem";
+			this.heroGeneratorToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+			this.heroGeneratorToolStripMenuItem.Text = "Hero Generator";
 			// 
 			// lblCurrentPhase
 			// 
@@ -262,27 +283,6 @@
 			this.btnNextDraft.UseVisualStyleBackColor = true;
 			this.btnNextDraft.Visible = false;
 			// 
-			// utilToolStripMenuItem
-			// 
-			this.utilToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.heroPollToolStripMenuItem,
-            this.heroGeneratorToolStripMenuItem});
-			this.utilToolStripMenuItem.Name = "utilToolStripMenuItem";
-			this.utilToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-			this.utilToolStripMenuItem.Text = "Util";
-			// 
-			// heroPollToolStripMenuItem
-			// 
-			this.heroPollToolStripMenuItem.Name = "heroPollToolStripMenuItem";
-			this.heroPollToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-			this.heroPollToolStripMenuItem.Text = "Hero Poll";
-			// 
-			// heroGeneratorToolStripMenuItem
-			// 
-			this.heroGeneratorToolStripMenuItem.Name = "heroGeneratorToolStripMenuItem";
-			this.heroGeneratorToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-			this.heroGeneratorToolStripMenuItem.Text = "Hero Generator";
-			// 
 			// DraftBot
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -308,7 +308,7 @@
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "DraftBot";
-			this.Text = "DraftBot";
+			this.Text = "Pwnsaw - v 0.5";
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.imgRedTeamBanOverlay)).EndInit();
