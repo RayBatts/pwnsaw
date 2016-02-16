@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace HeroCreator
@@ -15,7 +13,6 @@ namespace HeroCreator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-			//Application.Run(new HeroGenerator());
 			Application.Run( new DraftBot() );
         }
     }

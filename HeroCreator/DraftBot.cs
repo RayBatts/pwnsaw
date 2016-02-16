@@ -22,12 +22,14 @@ namespace HeroCreator
 			InitializeComponent();
 			InitializeForm();
 
+			_draftManager.OnHeroChosen += OnHeroChosen;
 			_draftManager.Reset( _playerTeamColor );
 		}
 
 		private void InitializeForm()
 		{
 			this.resetDraftToolStripMenuItem.Click += (s, e) => ResetDraft();
+			this.btnNextDraft.Click += (s, e) => ResetDraft();
 
 			imgBlueTeamBanOverlay.Parent = imgBlueBan;
 			imgBlueTeamBanOverlay.Location = new Point( 0, 0 );
@@ -77,6 +79,11 @@ namespace HeroCreator
 				return;
 			}
 
+			SubmitAction( _buttonToHeroLookup[ imgBox ] );
+		}
+
+		private void OnHeroChosen( HeroType heroType )
+		{
 			PictureBox selectedImage = null;
 			switch( _draftManager.CurrentDraftPhase )
 			{
@@ -112,16 +119,16 @@ namespace HeroCreator
 
 				case DraftData.DraftPhase.RedPick3:
 					selectedImage = imgRedPick3;
+					this.btnNextDraft.Visible = true;
 					break;
-				
+
 				default:
 					return;
 			}
 
+			var imgBox = _heroToButtonLoookup[ heroType ];
 			imgBox.Image = Properties.Resources.GrayOutOverlay;
 			selectedImage.Image = imgBox.BackgroundImage;
-
-			SubmitAction( _buttonToHeroLookup[ imgBox ] );
 
 			this.lblCurrentPhase.Text = _draftManager.CurrentDraftPhase.ToString();
 		}
@@ -156,6 +163,8 @@ namespace HeroCreator
 			{
 				kvp.Value.Image = null;
 			}
+
+			this.btnNextDraft.Visible = false;
 		}
 	}
 }

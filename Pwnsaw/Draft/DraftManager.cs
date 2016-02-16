@@ -18,6 +18,8 @@ namespace Pwnsaw
 
 	    private DraftData _currentDraft;
 
+		public event System.Action<HeroType> OnHeroChosen;
+
 	    public int CurrentRound
 	    {
 		    get
@@ -73,7 +75,15 @@ namespace Pwnsaw
 	    public void SubmitDraftAction( HeroType heroType )
 	    {
 			var actionType = _currentDraft.CurrentPhase <= DraftData.DraftPhase.SecondBan ? DraftActionType.Ban : DraftActionType.Pick;
-			_currentDraft.SubmitDraftAction( new DraftAction( TeamColor.Blue, actionType, _heroPool[ heroType ] ) );   
+
+		    var hType = _heroPool[ heroType ];
+			
+			if( OnHeroChosen != null )
+			{
+				OnHeroChosen( heroType );
+			}
+
+			_currentDraft.SubmitDraftAction( new DraftAction( TeamColor.Blue, actionType, hType ) );
 	    }
 
 		private void tempInitializeHeroData()

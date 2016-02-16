@@ -49,6 +49,7 @@
 			this.imgBluePick1 = new System.Windows.Forms.PictureBox();
 			this.imgRedBan = new System.Windows.Forms.PictureBox();
 			this.imgBlueBan = new System.Windows.Forms.PictureBox();
+			this.btnNextDraft = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.imgRedTeamBanOverlay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.imgBlueTeamBanOverlay)).BeginInit();
@@ -118,13 +119,13 @@
 			// resetDraftToolStripMenuItem
 			// 
 			this.resetDraftToolStripMenuItem.Name = "resetDraftToolStripMenuItem";
-			this.resetDraftToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+			this.resetDraftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.resetDraftToolStripMenuItem.Text = "Restart Draft";
 			// 
 			// draftOptionsToolStripMenuItem
 			// 
 			this.draftOptionsToolStripMenuItem.Name = "draftOptionsToolStripMenuItem";
-			this.draftOptionsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+			this.draftOptionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.draftOptionsToolStripMenuItem.Text = "Draft Options";
 			// 
 			// lblCurrentPhase
@@ -247,11 +248,22 @@
 			this.imgBlueBan.TabIndex = 1;
 			this.imgBlueBan.TabStop = false;
 			// 
+			// btnNextDraft
+			// 
+			this.btnNextDraft.Location = new System.Drawing.Point(671, 663);
+			this.btnNextDraft.Name = "btnNextDraft";
+			this.btnNextDraft.Size = new System.Drawing.Size(75, 23);
+			this.btnNextDraft.TabIndex = 17;
+			this.btnNextDraft.Text = "Next Draft";
+			this.btnNextDraft.UseVisualStyleBackColor = true;
+			this.btnNextDraft.Visible = false;
+			// 
 			// DraftBot
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(772, 713);
+			this.Controls.Add(this.btnNextDraft);
 			this.Controls.Add(this.lblRoundCount);
 			this.Controls.Add(this.lblCurrentPhase);
 			this.Controls.Add(this.imgRedTeamBanOverlay);
@@ -311,5 +323,6 @@
 		private System.Windows.Forms.PictureBox imgRedTeamBanOverlay;
 		private System.Windows.Forms.Label lblCurrentPhase;
 		private System.Windows.Forms.Label lblRoundCount;
+		private System.Windows.Forms.Button btnNextDraft;
 	}
 }
