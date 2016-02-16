@@ -130,7 +130,7 @@ namespace HeroCreator
 			imgBox.Image = Properties.Resources.GrayOutOverlay;
 			selectedImage.Image = imgBox.BackgroundImage;
 
-			this.lblCurrentPhase.Text = _draftManager.CurrentDraftPhase.ToString();
+			this.lblCurrentPhase.Text = (_draftManager.CurrentDraftPhase + 1).ToString();
 		}
 
 		private void SubmitAction( HeroType heroType )
