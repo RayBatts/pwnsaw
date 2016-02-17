@@ -55,9 +55,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pwnsaw\Pwnsaw.csproj">
+    <ProjectReference Include="..\Pwnsaw\PwnsawLib.csproj">
       <Project>{83C1375D-156C-4B68-8772-47B9703D091F}</Project>
-      <Name>Pwnsaw</Name>
+      <Name>PwnsawLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

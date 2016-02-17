@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pwnsaw.Draft;
+using PwnsawLib.Draft;
 
-namespace Pwnsaw
+namespace PwnsawLib
 {
     public class DraftManager
     {

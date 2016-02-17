@@ -6,7 +6,7 @@ using System.Text;
 using Google.GData.Client;
 using Google.GData.Spreadsheets;
 
-namespace Pwnsaw
+namespace PwnsawLib
 {
 	public class SpreadsheetManager
 	{

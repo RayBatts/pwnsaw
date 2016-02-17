@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Pwnsaw;
+using PwnsawLib;
 
-namespace HeroCreator
+namespace Pwnsaw
 {
 	public partial class HeroPoll : Form
 	{

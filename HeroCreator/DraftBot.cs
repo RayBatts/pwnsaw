@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using HeroCreator.Properties;
-using Pwnsaw;
-using Pwnsaw.Draft;
+using Pwnsaw.Properties;
+using PwnsawLib;
+using PwnsawLib.Draft;
 
-namespace HeroCreator
+namespace Pwnsaw
 {
 	public partial class DraftBot : Form
 	{

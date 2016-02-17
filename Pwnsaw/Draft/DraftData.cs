@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Permissions;
 
-namespace Pwnsaw.Draft
+namespace PwnsawLib.Draft
 {
     public class DraftData
     {

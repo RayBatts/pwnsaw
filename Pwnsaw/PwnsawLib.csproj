@@ -8,8 +8,8 @@
     <ProjectGuid>{83C1375D-156C-4B68-8772-47B9703D091F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pwnsaw</RootNamespace>
-    <AssemblyName>Pwnsaw</AssemblyName>
+    <RootNamespace>PwnsawLib</RootNamespace>
+    <AssemblyName>PwnsawLib</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

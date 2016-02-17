@@ -8,8 +8,8 @@
     <ProjectGuid>{02C9CD28-20B1-4F09-9AD5-9FEBC8E67DA3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HeroCreator</RootNamespace>
-    <AssemblyName>HeroCreator</AssemblyName>
+    <RootNamespace>Pwnsaw</RootNamespace>
+    <AssemblyName>Pwnsaw</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -145,9 +145,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pwnsaw\Pwnsaw.csproj">
+    <ProjectReference Include="..\Pwnsaw\PwnsawLib.csproj">
       <Project>{83C1375D-156C-4B68-8772-47B9703D091F}</Project>
-      <Name>Pwnsaw</Name>
+      <Name>PwnsawLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

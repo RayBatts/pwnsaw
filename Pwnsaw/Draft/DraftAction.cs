@@ -1,4 +1,4 @@
-﻿namespace Pwnsaw.Draft
+﻿namespace PwnsawLib.Draft
 {
 	public class DraftAction
 	{

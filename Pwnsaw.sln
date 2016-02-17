@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PwnsawCMD", "PwnsawCMD\PwnsawCMD.csproj", "{1D4634BD-FDAA-4C52-9B17-762C04C07382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pwnsaw", "Pwnsaw\Pwnsaw.csproj", "{83C1375D-156C-4B68-8772-47B9703D091F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PwnsawLib", "Pwnsaw\PwnsawLib.csproj", "{83C1375D-156C-4B68-8772-47B9703D091F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroCreator", "HeroCreator\HeroCreator.csproj", "{02C9CD28-20B1-4F09-9AD5-9FEBC8E67DA3}"
 EndProject

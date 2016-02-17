@@ -1,4 +1,4 @@
-﻿namespace HeroCreator
+﻿namespace Pwnsaw
 {
 	partial class DraftBot
 	{
@@ -174,7 +174,7 @@
 			// imgRedTeamBanOverlay
 			// 
 			this.imgRedTeamBanOverlay.BackColor = System.Drawing.Color.Transparent;
-			this.imgRedTeamBanOverlay.Image = global::HeroCreator.Properties.Resources.redTeamban;
+			this.imgRedTeamBanOverlay.Image = global::Pwnsaw.Properties.Resources.redTeamban;
 			this.imgRedTeamBanOverlay.Location = new System.Drawing.Point(671, 141);
 			this.imgRedTeamBanOverlay.Name = "imgRedTeamBanOverlay";
 			this.imgRedTeamBanOverlay.Size = new System.Drawing.Size(75, 75);
@@ -185,7 +185,7 @@
 			// imgBlueTeamBanOverlay
 			// 
 			this.imgBlueTeamBanOverlay.BackColor = System.Drawing.Color.Transparent;
-			this.imgBlueTeamBanOverlay.Image = global::HeroCreator.Properties.Resources.blueTeamBan;
+			this.imgBlueTeamBanOverlay.Image = global::Pwnsaw.Properties.Resources.blueTeamBan;
 			this.imgBlueTeamBanOverlay.Location = new System.Drawing.Point(26, 132);
 			this.imgBlueTeamBanOverlay.Name = "imgBlueTeamBanOverlay";
 			this.imgBlueTeamBanOverlay.Size = new System.Drawing.Size(75, 75);
@@ -265,7 +265,7 @@
 			// 
 			// imgBlueBan
 			// 
-			this.imgBlueBan.Image = global::HeroCreator.Properties.Resources.BlankHero;
+			this.imgBlueBan.Image = global::Pwnsaw.Properties.Resources.BlankHero;
 			this.imgBlueBan.Location = new System.Drawing.Point(26, 132);
 			this.imgBlueBan.Name = "imgBlueBan";
 			this.imgBlueBan.Size = new System.Drawing.Size(75, 75);

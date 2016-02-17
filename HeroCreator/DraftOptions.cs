@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using Pwnsaw.Draft;
+using PwnsawLib.Draft;
 
-namespace HeroCreator
+namespace Pwnsaw
 {
 	public partial class DraftOptions : Form
 	{

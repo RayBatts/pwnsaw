@@ -1,5 +1,5 @@
 ﻿
-namespace Pwnsaw
+namespace PwnsawLib
 {
 	public static class Constants
 	{

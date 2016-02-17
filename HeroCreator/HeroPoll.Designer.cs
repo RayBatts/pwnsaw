@@ -1,4 +1,4 @@
-﻿namespace HeroCreator
+﻿namespace Pwnsaw
 {
 	partial class HeroPoll
 	{

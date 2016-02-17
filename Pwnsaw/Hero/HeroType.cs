@@ -1,4 +1,4 @@
-﻿namespace Pwnsaw
+﻿namespace PwnsawLib
 {
     public enum HeroType
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace HeroCreator
+namespace Pwnsaw
 {
     static class Program
     {
