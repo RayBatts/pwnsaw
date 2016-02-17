@@ -196,4 +196,31 @@
   <data name="GrayOutOverlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GrayOutOverlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ClientID" xml:space="preserve">
+    <value>852836086056-0uqp6f5gk6h2sc5e3kovs57ljj23uasr.apps.googleusercontent.com</value>
+  </data>
+  <data name="ClientSecret" xml:space="preserve">
+    <value>SoFmXikYCcrHLkPgHPIaQ33C</value>
+  </data>
+  <data name="HHAnalystLoginName" xml:space="preserve">
+    <value>HalcyonHammersAnalysis@gmail.com</value>
+  </data>
+  <data name="HHAnalystLoginPassword" xml:space="preserve">
+    <value>ateamnumber1</value>
+  </data>
+  <data name="RedirectURI" xml:space="preserve">
+    <value>urn:ietf:wg:oauth:2.0:oob</value>
+  </data>
+  <data name="Scope" xml:space="preserve">
+    <value>https://spreadsheets.google.com/feeds https://docs.google.com/feeds</value>
+  </data>
+  <data name="CurrentSpreadsheetName" xml:space="preserve">
+    <value>PwnsawData Test Sheet</value>
+  </data>
+  <data name="GoogleSheetsApplicationName" xml:space="preserve">
+    <value>PWNSaw</value>
+  </data>
+  <data name="RefreshToken" xml:space="preserve">
+    <value>1/wFmTHew7g26cgd-FJP66Rt-cdZ6gB8D8LOwcwJBc6hdIgOrJDtdun6zK6XiATCKT</value>
+  </data>
 </root>

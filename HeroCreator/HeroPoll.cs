@@ -19,7 +19,9 @@ namespace HeroCreator
 		private HeroType _curHero = HeroType.Adagio;
 		private readonly Dictionary<HeroType, Hero> _allheroData = new Dictionary< HeroType, Hero >();
 		private readonly Dictionary<HeroType, FlowLayoutPanel> _heroThreatMatrices = new Dictionary<HeroType, FlowLayoutPanel>();
-		private readonly Dictionary<HeroType, FlowLayoutPanel> _heroCompatibilityMatrices = new Dictionary<HeroType, FlowLayoutPanel>(); 
+		private readonly Dictionary<HeroType, FlowLayoutPanel> _heroCompatibilityMatrices = new Dictionary<HeroType, FlowLayoutPanel>();
+
+		private SpreadsheetManager _spreadsheetMan;
 
 		public HeroPoll()
 		{
@@ -29,6 +31,14 @@ namespace HeroCreator
 			InitializeButtons();
 			
 			SetHero( _curHero );
+
+			_spreadsheetMan = new SpreadsheetManager( Properties.Resources.HHAnalystLoginName, 
+													  Properties.Resources.HHAnalystLoginPassword,
+													  Properties.Resources.GoogleSheetsApplicationName,
+													  Properties.Resources.ClientID,
+													  Properties.Resources.ClientSecret,
+													  Properties.Resources.RedirectURI,
+													  Properties.Resources.Scope);
 		}
 
 		private void SetHero( HeroType newHero )
@@ -142,6 +152,66 @@ namespace HeroCreator
 		{
 			this.btnNextHero.Click += OnNextHeroBtnClicked;
 			this.btnPrevHero.Click += OnPrevHeroBtnClicked;
+			this.btnPopulateData.Click += PopulateButtonData;
+		}
+
+		private void PopulateButtonData( object sender, EventArgs e )
+		{
+			var rng = new Random();
+
+			foreach( var kvp in _allheroData )
+			{
+				kvp.Value.RandomizeCompatibilityMatrix( rng );
+				kvp.Value.RandomizeThreatMatrix( rng );
+			}
+
+			this.tbInGameName.Text = "RayBatts";
+
+			return;
+			//private readonly Dictionary<HeroType, FlowLayoutPanel> _heroThreatMatrices = new Dictionary<HeroType, FlowLayoutPanel>();
+			//private readonly Dictionary<HeroType, FlowLayoutPanel> _heroCompatibilityMatrices = new Dictionary<HeroType, FlowLayoutPanel>();
+			
+			foreach( var panel in _heroThreatMatrices.Values )
+			{
+				var panelToCheck = rng.Next( panel.Controls.Count );
+
+				foreach( var ctrl in panel.Controls )
+				{
+					var rb = ctrl as RadioButton;
+
+					if( rb == null )
+					{
+						continue;
+					}
+
+					if( --panelToCheck <= 0 )
+					{
+						rb.Checked = true;
+						break;
+					}
+				}
+			}
+
+			foreach( var panel in _heroCompatibilityMatrices.Values )
+			{
+				var panelToCheck = rng.Next( panel.Controls.Count );
+
+				foreach( var ctrl in panel.Controls )
+				{
+					var rb = ctrl as RadioButton;
+
+					if( rb == null )
+					{
+						continue;
+					}
+
+					if( --panelToCheck <= 0 )
+					{
+						rb.Checked = true;
+						break;
+					}
+				}
+			}
 		}
 
 		public bool IsMatrixComplete( Dictionary<HeroType, FlowLayoutPanel> matrixPanel )
@@ -219,6 +289,12 @@ namespace HeroCreator
 			}
 
 			// At this point we have all of the data we need. Ship it off into the google doc.
+
+			_spreadsheetMan.Authenticate( Properties.Resources.RefreshToken, Properties.Resources.CurrentSpreadsheetName );
+
+			_spreadsheetMan.SetSpreadsheet( Properties.Resources.CurrentSpreadsheetName );
+
+			_spreadsheetMan.SetHeroPollData( this.tbInGameName.Text, _allheroData.Values );
 		}
 
 		private void OnNextHeroBtnClicked( object sender, EventArgs eventArgs )
@@ -233,6 +309,12 @@ namespace HeroCreator
 			// TODO: Check that everything is valid and then open the tier ranker.
 			if( _curHero == HeroType.Vox )
 			{
+				if( string.IsNullOrEmpty( this.tbInGameName.Text ) || string.IsNullOrWhiteSpace( this.tbInGameName.Text ) )
+				{
+					MessageBox.Show( "Please enter your In Game Name.", "In-Game Name Missing." );
+					return;
+				}
+
 				var heroPollForm = new TierRankings();
 
 				heroPollForm.Closed += HeroTierRankingsComplete;
@@ -349,7 +431,5 @@ namespace HeroCreator
 				}
 			}
 		}
-
-
 	}
 }

@@ -40,6 +40,7 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tbInGameName = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.btnPopulateData = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.imgCurHero)).BeginInit();
 			this.matrixLayoutPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -236,6 +237,7 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.btnPopulateData);
 			this.panel1.Controls.Add(this.btnPrevHero);
 			this.panel1.Controls.Add(this.btnNextHero);
 			this.panel1.Location = new System.Drawing.Point(3, 148);
@@ -258,6 +260,15 @@
 			this.label3.Size = new System.Drawing.Size(97, 13);
 			this.label3.TabIndex = 10;
 			this.label3.Text = "Your Vainglory IGN";
+			// 
+			// btnPopulateData
+			// 
+			this.btnPopulateData.Location = new System.Drawing.Point(198, 8);
+			this.btnPopulateData.Name = "btnPopulateData";
+			this.btnPopulateData.Size = new System.Drawing.Size(75, 23);
+			this.btnPopulateData.TabIndex = 11;
+			this.btnPopulateData.Text = "Populate";
+			this.btnPopulateData.UseVisualStyleBackColor = true;
 			// 
 			// HeroPoll
 			// 
@@ -297,5 +308,6 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TextBox tbInGameName;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Button btnPopulateData;
 	}
 }

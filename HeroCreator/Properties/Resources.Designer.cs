@@ -131,6 +131,33 @@ namespace HeroCreator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 852836086056-0uqp6f5gk6h2sc5e3kovs57ljj23uasr.apps.googleusercontent.com.
+        /// </summary>
+        internal static string ClientID {
+            get {
+                return ResourceManager.GetString("ClientID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SoFmXikYCcrHLkPgHPIaQ33C.
+        /// </summary>
+        internal static string ClientSecret {
+            get {
+                return ResourceManager.GetString("ClientSecret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PwnsawData Test Sheet.
+        /// </summary>
+        internal static string CurrentSpreadsheetName {
+            get {
+                return ResourceManager.GetString("CurrentSpreadsheetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap fortress {
@@ -151,12 +178,39 @@ namespace HeroCreator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PWNSaw.
+        /// </summary>
+        internal static string GoogleSheetsApplicationName {
+            get {
+                return ResourceManager.GetString("GoogleSheetsApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap GrayOutOverlay {
             get {
                 object obj = ResourceManager.GetObject("GrayOutOverlay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HalcyonHammersAnalysis@gmail.com.
+        /// </summary>
+        internal static string HHAnalystLoginName {
+            get {
+                return ResourceManager.GetString("HHAnalystLoginName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ateamnumber1.
+        /// </summary>
+        internal static string HHAnalystLoginPassword {
+            get {
+                return ResourceManager.GetString("HHAnalystLoginPassword", resourceCulture);
             }
         }
         
@@ -231,12 +285,30 @@ namespace HeroCreator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to urn:ietf:wg:oauth:2.0:oob.
+        /// </summary>
+        internal static string RedirectURI {
+            get {
+                return ResourceManager.GetString("RedirectURI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap redTeamban {
             get {
                 object obj = ResourceManager.GetObject("redTeamban", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1/wFmTHew7g26cgd-FJP66Rt-cdZ6gB8D8LOwcwJBc6hdIgOrJDtdun6zK6XiATCKT.
+        /// </summary>
+        internal static string RefreshToken {
+            get {
+                return ResourceManager.GetString("RefreshToken", resourceCulture);
             }
         }
         
@@ -277,6 +349,15 @@ namespace HeroCreator.Properties {
             get {
                 object obj = ResourceManager.GetObject("saw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://spreadsheets.google.com/feeds https://docs.google.com/feeds.
+        /// </summary>
+        internal static string Scope {
+            get {
+                return ResourceManager.GetString("Scope", resourceCulture);
             }
         }
         

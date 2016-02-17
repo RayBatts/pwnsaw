@@ -110,6 +110,32 @@ namespace Pwnsaw
 			}
 	    }
 
+	    public void RandomizeThreatMatrix( Random rng = null )
+	    {
+		    if( rng == null )
+		    {
+			    rng = new Random();
+		    }
+
+			foreach( var key in ThreatMatrix.Keys.ToList() )
+			{
+				ThreatMatrix[ key ] = rng.Next(1, 6);
+			}
+	    }
+
+		public void RandomizeCompatibilityMatrix( Random rng )
+		{
+			if( rng == null )
+			{
+				rng = new Random();
+			}
+
+			foreach( var key in CompatibilityMatrix.Keys.ToList() )
+			{
+				CompatibilityMatrix[ key ] = rng.Next( 1, 4 );
+			}
+		}
+
 	    #endregion
 
     }
