@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pwnsaw", "Pwnsaw\Pwnsaw.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroCreator", "HeroCreator\HeroCreator.csproj", "{02C9CD28-20B1-4F09-9AD5-9FEBC8E67DA3}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PwnsawInstaller", "PwnsawInstaller\PwnsawInstaller.vdproj", "{5BF14127-19BC-4340-937B-661BC51971B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,12 @@ Global
 		{02C9CD28-20B1-4F09-9AD5-9FEBC8E67DA3}.Release|Mixed Platforms.Build.0 = Release|x86
 		{02C9CD28-20B1-4F09-9AD5-9FEBC8E67DA3}.Release|x86.ActiveCfg = Release|x86
 		{02C9CD28-20B1-4F09-9AD5-9FEBC8E67DA3}.Release|x86.Build.0 = Release|x86
+		{5BF14127-19BC-4340-937B-661BC51971B9}.Debug|Any CPU.ActiveCfg = Debug
+		{5BF14127-19BC-4340-937B-661BC51971B9}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{5BF14127-19BC-4340-937B-661BC51971B9}.Debug|x86.ActiveCfg = Debug
+		{5BF14127-19BC-4340-937B-661BC51971B9}.Release|Any CPU.ActiveCfg = Release
+		{5BF14127-19BC-4340-937B-661BC51971B9}.Release|Mixed Platforms.ActiveCfg = Release
+		{5BF14127-19BC-4340-937B-661BC51971B9}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
