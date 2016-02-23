@@ -3,10 +3,15 @@ namespace PwnsawLib
 {
 	public static class Constants
 	{
-		public static readonly string IgnHeader = "playerign";
-		public static readonly string TierRankingsHeader = "tierrankings";
+		public const char DelimitingCharacter = ',';
 
-		public static readonly string ThreatMatrixFormatString = "{0}threatmatrix";
-		public static readonly string CompatibilityMatrixFormatString = "{0}compatibilitymatrix";
+		public const string IgnHeader = "playerign";
+		public const string TierRankingsHeader = "tierrankings";
+
+		public const string ThreatMatrixHeading = "threatmatrix";
+		public const string CompatibilityMatrixHeading = "compatibilitymatrix";
+
+		public const string ThreatMatrixFormatString = "{0}" + ThreatMatrixHeading;
+		public const string CompatibilityMatrixFormatString = "{0}" + CompatibilityMatrixHeading;
 	}
 }

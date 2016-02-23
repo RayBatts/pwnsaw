@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Google.GData.Client;
 using Google.GData.Spreadsheets;
@@ -95,7 +96,7 @@ namespace PwnsawLib
 
 			// TODO: Find an existing user.
 
-			var userExists = UpdateExistingUserData();
+			var userExists = UpdateExistingUserData( userName, heroes );
 
 			if( userExists )
 			{
@@ -106,9 +107,96 @@ namespace PwnsawLib
 			SetNewUserData( userName, heroes );
 		}
 
-		private bool UpdateExistingUserData()
+		private bool UpdateExistingUserData( string userName, IEnumerable<Hero> heroes )
 		{
-			return false;
+			if( _currentEntry == null )
+			{
+				return false;
+			}
+
+			var userNameToLower = userName.ToLower();
+
+			var worksheetFeed = (WorksheetEntry)_currentEntry.Worksheets.Entries[ 0 ];
+
+			var listFeedLink = worksheetFeed.Links.FindService( GDataSpreadsheetsNameTable.ListRel, null );
+			var listQuery = new ListQuery( listFeedLink.HRef.ToString() );
+			var listFeed = _spreadsheetsService.Query( listQuery );
+
+			ListEntry existingRow = null;
+
+			foreach( var entry in listFeed.Entries )
+			{
+				var row = entry as ListEntry;
+				if( row == null )
+				{
+					continue;
+				}
+
+				foreach( ListEntry.Custom rowElement in row.Elements )
+				{
+					if( rowElement.LocalName != Constants.IgnHeader )
+					{
+						continue;
+					}
+
+					if( rowElement.Value.ToLower() == userNameToLower )
+					{
+						existingRow = row;
+						break;
+					}
+				}
+
+				if( existingRow != null )
+				{
+					break;
+				}
+			}
+
+			if( existingRow == null )
+			{
+				return false;
+			}
+
+			foreach( ListEntry.Custom rowElement in existingRow.Elements )
+			{
+				switch( rowElement.LocalName )
+				{
+					case Constants.IgnHeader:
+						rowElement.Value = userName;
+						continue;
+
+					case Constants.TierRankingsHeader:
+						rowElement.Value = GetTierRankings( heroes );
+						continue;
+
+					default:
+						break;
+				}
+
+				var elementName = rowElement.LocalName;
+				var heroName = elementName.Replace( Constants.ThreatMatrixHeading, string.Empty );
+
+				// If the string didn't change, it's because it's a compatibility matrix, not a threat matrix.
+				var isCompatibilityMatrix = heroName == elementName;
+				if( isCompatibilityMatrix )
+				{
+					heroName = elementName.Replace( Constants.CompatibilityMatrixHeading, string.Empty );
+				}
+
+				// Find which hero this is.
+				var matchingHero =  heroes.FirstOrDefault( ( h ) => h.HType.ToString().ToLower() == heroName );
+				if( matchingHero == null )
+				{
+					continue;
+				}
+
+				var newData = isCompatibilityMatrix ? GetCompatibilityMatrix( matchingHero ) : GetThreatMatrix( matchingHero );
+				rowElement.Value = newData;
+			}
+
+			existingRow.Update();
+
+			return true;
 		}
 
 		private void SetNewUserData( string userName, IEnumerable<Hero> heroes )
@@ -120,19 +208,11 @@ namespace PwnsawLib
 
 			var newRow = new ListEntry();
 			var row = newRow.Elements;
-			var delimitingChar = ',';
 
 			row.Add( new ListEntry.Custom() { LocalName = Constants.IgnHeader, Value = userName } );
 
-			// get our tier rankings
-			var tierRankings = new StringBuilder();
-
-			foreach( var hero in heroes )
-			{
-				tierRankings.AppendFormat( "{0}{1}", hero.Ranking, delimitingChar );
-			}
-
-			row.Add( new ListEntry.Custom() { LocalName = Constants.TierRankingsHeader, Value = tierRankings.ToString().TrimEnd( delimitingChar ) } );
+			// set our tier rankings
+			row.Add( new ListEntry.Custom() { LocalName = Constants.TierRankingsHeader, Value = GetTierRankings( heroes ) } );
 
 			foreach( var hero in heroes )
 			{
@@ -141,19 +221,19 @@ namespace PwnsawLib
 
 				foreach( var threatValue in hero.ThreatMatrix.Values )
 				{
-					heroThreatMatrix.AppendFormat( "{0}{1}", threatValue, delimitingChar );
+					heroThreatMatrix.AppendFormat( "{0}{1}", threatValue, Constants.DelimitingCharacter );
 				}
 
 				foreach( var compatibilityValue in hero.CompatibilityMatrix.Values )
 				{
-					heroCompatibilityMatrix.AppendFormat( "{0}{1}", compatibilityValue, delimitingChar );
+					heroCompatibilityMatrix.AppendFormat( "{0}{1}", compatibilityValue, Constants.DelimitingCharacter );
 				}
 
 				var threatMatrixName = string.Format( Constants.ThreatMatrixFormatString, hero.HType).ToLower();
 				var compMatrixName = string.Format( Constants.CompatibilityMatrixFormatString, hero.HType ).ToLower();
 
-				row.Add( new ListEntry.Custom() { LocalName = threatMatrixName, Value = heroThreatMatrix.ToString().TrimEnd( delimitingChar ) } );
-				row.Add( new ListEntry.Custom() { LocalName = compMatrixName, Value = heroCompatibilityMatrix.ToString().TrimEnd( delimitingChar ) } );
+				row.Add( new ListEntry.Custom() { LocalName = threatMatrixName, Value = GetThreatMatrix( hero ) } );
+				row.Add( new ListEntry.Custom() { LocalName = compMatrixName, Value = GetCompatibilityMatrix( hero ) } );
 			}
 
 			var worksheetFeed = (WorksheetEntry)_currentEntry.Worksheets.Entries[0];
@@ -163,6 +243,40 @@ namespace PwnsawLib
 			var listFeed = _spreadsheetsService.Query( listQuery );
 
 			_spreadsheetsService.Insert( listFeed, newRow );
+		}
+
+		private string GetCompatibilityMatrix( Hero hero )
+		{
+			var outputString = new StringBuilder();
+			foreach( var value in hero.CompatibilityMatrix.Values )
+			{
+				outputString.AppendFormat( "{0}{1}", value, Constants.DelimitingCharacter );
+			}
+
+			return outputString.ToString().TrimEnd( Constants.DelimitingCharacter );
+		}
+
+		private string GetThreatMatrix( Hero hero )
+		{
+			var outputString = new StringBuilder();
+			foreach( var value in hero.ThreatMatrix.Values )
+			{
+				outputString.AppendFormat( "{0}{1}", value, Constants.DelimitingCharacter );
+			}
+
+			return outputString.ToString().TrimEnd( Constants.DelimitingCharacter );
+		}
+
+		private string GetTierRankings( IEnumerable<Hero> heroes )
+		{
+			var tierRankings = new StringBuilder();
+
+			foreach( var hero in heroes )
+			{
+				tierRankings.AppendFormat( "{0}{1}", hero.Ranking, Constants.DelimitingCharacter );
+			}
+
+			return tierRankings.ToString().TrimEnd( Constants.DelimitingCharacter );
 		}
 
 		public void InitializeHeaders( )
